@@ -1,8 +1,26 @@
+/*
+ * Inputs:
+ * frontSonic
+ * backIR
+ * frontLine
+ * backLine
+ * 
+ * Outputs:
+ * leftServo
+ * rightServo
+ */
+
 //////////////////
 // LIBS INCLUDE //
 //////////////////
 
 #include <Servo.h> //include servo libs
+
+/////////////////
+// GLOBAL VARS //
+/////////////////
+
+public String globalState;
 
 ///////////////////
 // OBJECTS SETUP //
@@ -73,6 +91,7 @@ void setup(){
 
 void loop(){
   test();
+  Serial.println(frontSonic_Distance());
 }
 
 void test(){
@@ -153,4 +172,27 @@ void test(){
   rightServo.write(100);
 }
 
+float frontSonic_Distance(){
+  //TODO: add distance code for frontSonic
+  return -1.0f;
+}
+
+float backIR_Distance(){
+  //TODO: add distance code
+  return -1.0f;
+}
+
+float frontLine_Distance(){
+  //TODO: add distance code
+  return -1.0f;
+}
+
+float backLine_Distance(){
+  //TODO: add distance code
+  return -1.0f;
+}
+
+String globalStateAnalyst(){
+  //DESCRIPTION: globalStateAnalyst collects data and returns the best possible rehavior 
+}
 
