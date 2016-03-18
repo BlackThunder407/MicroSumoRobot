@@ -1,4 +1,6 @@
 /*
+ * Micro Sumo Robot - Project B1-T3
+ *
  * Inputs:
  * frontSonic
  * backIR
@@ -10,6 +12,65 @@
  * rightServo
  */
 
+/* Each sensor and each servo has an associated LED indicating if it detects something or if it is active
+ * That leaves us with 3 remaining LEDs - we might choose to implement a 3-bit up counter visualization allowing to count from 0 to 7
+ * 0 000 
+ * 1 001 HUNT MODE: looking for opponents | not at the edge - not sensing enemies - sweeps across arena looking for opponent
+ * 2 010 TARGET MODE: aiming to face found opponent | opponent sensed - aiming to face opponent AND moving towards opponent
+ * 3 011 ATTACK MODE: pushing opponent ahead | opponent sensed - aiming complete - moving at full power to push opponent
+ * 4 100 SURVIVE MODE: staying in arena at all costs | rotating to stay in arena
+ * 5 101 STOP MODE: ending operations on user request
+ * 6 110 CURRENTLY ROTATING
+ * 7 111 PRGM ERROR
+ */
+ 
+/* HUNT MODE CONDITIONS
+ * frontLine.detection() == False;
+ * backLine.detection() == False;
+ * frontSonic.proximityLevel() == 0;
+ * backIR.proximityLevel() == 0;
+ */
+
+/* TARGET MODE CONDITIONS
+ * frontLine.detection() == False;
+ * backLine.detection() == False;
+ * frontSonic.proximityLevel() == 1;
+ * backIR.proximityLevel() == 1;
+ */
+ 
+/* ATTACK MODE CONDITIONS
+ * frontLine.detection() == False;
+ * backLine.detection() == False;
+ * frontSonic.proximityLevel() > 1;
+ * backIR.proximityLevel() > 1;
+ */
+ 
+/* SURVIVE MODE CONDITIONS
+ * frontLine.detection() == True;
+ * backLine.detection() == True;
+ */
+ 
+/* SURVIVE MODE CONDITIONS
+ * TODO: implement STOP button
+ */
+ 
+/* TO IMPLEMENT: 
+ * one object for frontSonic and backIR with the following methods:
+ * frontSonic.distance(); returning distance to detected object as float, returning -1 if no detection
+ * frontSonic.detection(); returning True if object is detected and False otherwise
+ * frontSonic.proximityLevel(); returning integer 0, 1, 2, 3 where 0 is no alert (no detection) and 3 is maximum alert (distance related)
+ * one object for frontLine and backLine with the following methods:
+ * frontLine.detection(); returning True if the edge is detected and False otherwise
+ * frontLine.edge(); returning True is frontline.detection(); occurs long enough
+ * one object for each servo with the following methods:
+ * leftServo.speed(maxForward);
+ * leftServo.speed(medForward);
+ * leftServo.speed(minForward);
+ * leftServo.speed(maxBackward);
+ * leftServo.speed(medBackward);
+ * leftServo.speed(minBackward);
+ */
+ 
 //////////////////
 // LIBS INCLUDE //
 //////////////////
@@ -91,7 +152,6 @@ void setup(){
 
 void loop(){
   test();
-  Serial.println(frontSonic_Distance());
 }
 
 void test(){
@@ -172,6 +232,7 @@ void test(){
   rightServo.write(100);
 }
 
+
 float frontSonic_Distance(){
   //TODO: add distance code for frontSonic
   return -1.0f;
@@ -194,5 +255,4 @@ float backLine_Distance(){
 
 String globalStateAnalyst(){
   //DESCRIPTION: globalStateAnalyst collects data and returns the best possible rehavior 
-}
-
+} 
