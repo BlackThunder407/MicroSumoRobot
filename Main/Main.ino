@@ -81,7 +81,7 @@
 // GLOBAL VARS //
 /////////////////
 
-public String globalState;
+//public String globalState;
 
 ///////////////////
 // OBJECTS SETUP //
@@ -208,7 +208,7 @@ void test(){
   // LEFT SERVO //
   ////////////////
 
-  leftServo.write(100);
+  //leftServo.write(100);
 
   //  myservo.write(45);                  // rotate counterclockwise full speed
   //  delay(2000);                           
@@ -228,8 +228,10 @@ void test(){
   ////////////////
   // RIGHT SERVO //
   ////////////////
+  //mid 80
+  rightServo.write(70);
+  leftServo.write(90);
 
-  rightServo.write(100);
 }
 
 
@@ -253,6 +255,6 @@ float backLine_Distance(){
   return -1.0f;
 }
 
-String globalStateAnalyst(){
-  //DESCRIPTION: globalStateAnalyst collects data and returns the best possible rehavior 
-} 
+//String globalStateAnalyst(){
+//  //DESCRIPTION: globalStateAnalyst collects data and returns the best possible rehavior 
+//} 
