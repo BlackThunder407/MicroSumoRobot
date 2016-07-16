@@ -8,7 +8,7 @@ See NeoThug in action during the actual tournament: https://www.youtube.com/watc
 See the tournament's teaser: https://www.youtube.com/watch?v=4btJl4k_wpE
 
 #Equipment used
-- DC continuous rotation servos (x2)
+- 9g DC continuous rotation servos (x2)
 - Ultrasonic Distance Sensor (HC-SR04)
 - Analog IR Line Sensor (QRE1113)
 - 3.7V 240mAh LiPo Battery (x2)
