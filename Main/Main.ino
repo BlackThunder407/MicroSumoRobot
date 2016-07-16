@@ -202,23 +202,7 @@ void AvoidBorder(){
   delay(75);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//not used 
 void EvasiveManeuver(){
   //when facing enemy for too long
   Stop();
