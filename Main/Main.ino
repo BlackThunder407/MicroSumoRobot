@@ -1,23 +1,23 @@
-//US defintions
+// US defintions
 #include <Ultrasonic.h>
 #define TRIGGER_PIN  12
 #define ECHO_PIN     11
 Ultrasonic ultrasonic(TRIGGER_PIN, ECHO_PIN);
 
-//SERVO definitions
-#include <Servo.h> //include servo libs
-Servo leftServo;  //create servo object to control a servo 
-Servo rightServo; //create servo object to control a servo 
-int leftServo_Pin = 2; //connected to digital out 2
-int rightServo_Pin = 3; //connected to digital out 3
+// Servo definitions
+#include <Servo.h> // Include servo libs
+Servo leftServo;  // Create servo object to control a servo 
+Servo rightServo; // Create servo object to control a servo 
+int leftServo_Pin = 2; // Connected to digital out 2
+int rightServo_Pin = 3; // Connected to digital out 3
 
-//LINE defintions 
+// Line defintions 
 int frontLine_Pin = 0; //connected to analog in 0
 int frontLine_Led = 13;
 int frontLine_Value;
 
-//GLOBAL definitions
-//arena official diameter micro category: 38.5 cm
+// Global definitions
+// Arena official diameter micro category: 38.5 cm
 float trigDist = 20.0f;
 boolean trigToken;
 float t1, t2, t3;
@@ -60,9 +60,9 @@ void loop()
     digitalWrite(frontLine_Led, LOW);
   }
 
-  //main code
+  // Main code
 
-  //get current values
+  //Get current values
   if(!trigToken){
     t1 = US();
     delay(5);
@@ -79,8 +79,6 @@ void loop()
       while(!FrontLine() && millis() < maxTime){
         Forward();
       }
-
-      
 //      noBreak = true;
 //      while(!FrontLine() && noBreak){
 //        EvasiveManeuver();
@@ -106,7 +104,7 @@ void loop()
 
 float US()
   {
-  //US
+  // US
   float cmMsec, inMsec;
   long microsec = ultrasonic.timing();
 
@@ -123,15 +121,15 @@ boolean FrontLine()
   //frontLine get data
   frontLine_Value = analogRead(frontLine_Pin);
   if(frontLine_Value < 52){
-    //actual condtions
-    //return true;
-    //testing
+    // Actual condtions
+    // Return true;
+    // Testing
     return true;
   }
   else{
-    //actual conditions
+    // Actual conditions
     //return false;
-    //testing
+    // Testing
     return false;
     
   }
@@ -139,17 +137,17 @@ boolean FrontLine()
   }
 
 void AttachServos(){
-  leftServo.attach(leftServo_Pin);  //attaches the servo on pin to the servo object 
-  rightServo.attach(rightServo_Pin); //attaches the servo on pin to the servo object 
+  leftServo.attach(leftServo_Pin);  // Attaches the servo on pin to the servo object 
+  rightServo.attach(rightServo_Pin); // Attaches the servo on pin to the servo object 
 }
 
 void Stop(){
   //left: 82 == full stop
-  //offset to 90: -8
+  // Offset to 90: -8
   //leftServo.write(82);
   leftServo.write(90);
   //right: 81 == full stop
-  //offset to 90: -9
+  // Offset to 90: -9
   //rightServo.write(81);
   rightServo.write(94);
 }
@@ -202,9 +200,9 @@ void AvoidBorder(){
   delay(75);
 }
 
-//not used 
+// Not used 
 void EvasiveManeuver(){
-  //when facing enemy for too long
+  // When facing enemy for too long
   Stop();
   delay(75);
   RotateCW();
@@ -213,7 +211,3 @@ void EvasiveManeuver(){
   delay(75);
   noBreak = false;
 }
-
-
-
-
